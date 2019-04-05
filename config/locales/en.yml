@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  errors: 
+    source_account_not_found: "Source account not found."
+    destination_account_not_found: "Destination account not found."
+    not_enough_balance: "Account %{account_id} don't have enough balance."

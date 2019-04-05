@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_173307) do
+ActiveRecord::Schema.define(version: 2019_04_05_184535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "balance", precision: 6, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.decimal "amount", precision: 6, scale: 2
+    t.bigint "source_account_id"
+    t.bigint "destination_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_account_id"], name: "index_transactions_on_destination_account_id"
+    t.index ["source_account_id"], name: "index_transactions_on_source_account_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +45,7 @@ ActiveRecord::Schema.define(version: 2019_04_03_173307) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "accounts", column: "destination_account_id"
+  add_foreign_key "transactions", "accounts", column: "source_account_id"
 end

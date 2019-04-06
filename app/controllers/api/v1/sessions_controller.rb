@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionsController < Devise::SessionsController
   def create
     success, user = User.valid_login?(params[:email], params[:password])
     if success
@@ -8,6 +8,5 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
-  end
+  
 end

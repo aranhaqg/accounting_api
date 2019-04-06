@@ -9,7 +9,6 @@ class TransferMoneyFeatureTest < ActiveSupport::TestCase
 		@source_account.save!
 		@destination_account = Account.new(user: @user2, balance: 6)
 		@destination_account.save!
-
 	end
 
 

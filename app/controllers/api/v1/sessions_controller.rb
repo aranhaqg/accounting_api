@@ -11,16 +11,11 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def destroy
-
+    current_user.authentication_token = nil
+    if current_user.save
+      head :ok
+    else
+      head :unauthorized
+    end
   end
-
-  #private
-#
-  #def respond_with(resource, _opts = {})
-  #  render json: resource
-  #end
-#
-  #def respond_to_on_destroy
-  #  head :no_content
-  #end
 end

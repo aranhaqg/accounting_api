@@ -1,4 +1,5 @@
 class Api::V1::TransactionsController < ApplicationController
+  before_action :authenticate_user!
   def transfer
   	begin
   		if params[:source_account_id].present? && params[:destination_account_id].present? && params[:amount].present?

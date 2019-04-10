@@ -18,7 +18,6 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'devise-jwt', '~> 0.5.9'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -31,6 +30,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Authentication tools
+gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 # Gem to load environment variables from .env
 gem 'dotenv-rails'
 

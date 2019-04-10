@@ -1,0 +1,6 @@
+default: &default
+  adapter: postgresql
+test:
+  <<: *default
+  database: accounting_api_db_test
+  encoding: utf8

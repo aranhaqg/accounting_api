@@ -6,8 +6,8 @@ services:
 env:
   - DB=postgresql
 script:
-  - RAILS_ENV=test bundle exec rake db:create db:migrate db:seed --trace
-  - rails test
+  - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+  - rake test
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c "CREATE DATABASE accounting_test;" -U postgres

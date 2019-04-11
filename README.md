@@ -103,7 +103,7 @@ If the request was succesful a JSON object will be returned with a succes messag
 ## Future Improvements
 
 * Use ActiveModel Serializer to handle better serialization/deserialization.
-* Implement token expiration.
+* Implement token expiration adding a token creation date to User model and before every request compare the spent time.
 * Improve security with Rack Attack to protect from bad clients. Can be used to prevent brute-force passwords attacks, scrapers and throttling requests from IP addresses for example.
 * Scan code to look for security vulnerabilities with Brakeman. 
 * Add payment and get bank statement features.

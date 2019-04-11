@@ -95,10 +95,22 @@ If the request was succesful a JSON object if the balance and OK status (200) wi
 ### POST api/v1/transactions/transfer
 
 This endpoint is used to perform a transfer between accounts and its handled by action transfer at [Transactions Controller](/app/controllers/transactions_controller.rb). 
-To make the transfer the request header contain the keys X-User-Email with the user email as value and X-User-Token with the token returned at login as value and source_account_id, destination_account_id and amount with its respective values as url params.
+To make the transfer the request header contain the keys *X-User-Email* with the user email as value and *X-User-Token* with the token returned at login as value and source_account_id, destination_account_id and amount with its respective values as url params.
 
 If the request was succesful a JSON object will be returned with a succes message and OK status (200) will be returned. If any params is missing, a JSON object with the error message and a BAD REQUEST status (400) will be returned. If the source or destination accounts wasn't found or there's not anough source account balance to make the transfer, a JSON object with the error message and a UNPROCESSABLE ENTITY status (422) will be returned. 
 
+## Testing
+
+At the Seed file i've created 2 users with 2 accounts with 100 as balance value for each one.
+User 1 has aranha@gmail.com as email and password 123456 and user 2 has aranha2@gmail.com as email and password 123456.
+
+I sugest the use of Postman as tool to test. The following urls can be used as example:
+* https://aranha-accounting-api.herokuapp.com/api/v1/sessions?email=aranha@gmail.com&password=123456
+* https://aranha-accounting-api.herokuapp.com/api/v1/sessions
+* https://aranha-accounting-api.herokuapp.com/api/v1/transactions/balance?id=1
+* https://aranha-accounting-api.herokuapp.com/api/v1/transactions/transfer?source_account_id=1&destination_account_id=2&amount=3
+
+Don't forget to add the *X-User-Email* and *X-User-Token* to the header to logout, get the balance and transfer money requests!
 
 ## Future Improvements
 

@@ -5,4 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def token_expired?
+  	token_expires_at.present? ? (token_expires_at < DateTime.now) : true 
+  end
+
 end

@@ -1,5 +1,5 @@
 class Api::V1::TransactionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :check_token_expiration
   def transfer
   	begin
   		if params[:source_account_id].present? && params[:destination_account_id].present? && params[:amount].present?

@@ -29,7 +29,8 @@ The [User](/app/models/user.rb) entity it's a devise generated user model compos
 	* remember_created_at: DateTime
 	* created_at: DateTime 
 	* updated_at: DateTime 
-	* authentication_token: String
+    * authentication_token: String
+	* token_expires_at: DateTime
 
 ### Account
 
@@ -75,7 +76,7 @@ All defined endpoints returns a JSON Object (a message or requested entities).
 
 This endpoint is used to login the user so the transactions can be done. 
 
-To make a succesful login send in the url the params: email and password. If the password is right a JSON object with the email and authentication_token will be returned with a CREATED status (201). This token will be necessary to perform transaction and logout and should be added in the request header.
+To make a succesful login send in the url the params: email and password. If the password is right, a JSON object with the email and authentication_token will be returned with a CREATED status (201). This token will be necessary to perform transaction and logout and should be added in the request header and will expired in 7 minutes.
 If the password is wrong,a UNAUTHORIZED status (401) will be returned.
 
 ### DELETE api/v1/sessions
@@ -115,7 +116,6 @@ Don't forget to add the *X-User-Email* and *X-User-Token* to the header to logou
 ## Future Improvements
 
 * Use ActiveModel Serializer to handle better serialization/deserialization.
-* Implement token expiration adding a token creation date to User model and before every request compare the spent time.
 * Improve security with Rack Attack to protect from bad clients. Can be used to prevent brute-force passwords attacks, scrapers and throttling requests from IP addresses for example.
 * Scan code to look for security vulnerabilities with Brakeman. 
 * Add payment and get bank statement features.

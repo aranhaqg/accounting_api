@@ -112,6 +112,7 @@ pt-BR:
     destination_account_not_found: "Conta destino não encontrada."
     not_enough_balance: "A conta %{account_id} não tem saldo suficiente."
     missing_params: "Estão faltando alguns parâmetros para a requisição."
+    token_expired: "Sessão expirada. Necessário logar novamente."
     format: "%{attribute} %{message}"
     messages:
       accepted: deve ser aceito

@@ -14,9 +14,26 @@ class Transaction < ApplicationRecord
 		raise Exceptions::NotEnoughBalanceError.new(source_account_id) if amount > source_account.balance
 
 		Transaction.transaction do
-			Transaction.new(source_account: source_account, destination_account: destination_account, amount: amount).save
 			source_account.debit(amount)
 			destination_account.credit(amount)
+			Transaction.new(source_account: source_account, 
+							destination_account: destination_account, 
+							amount: amount, 
+							source_account_balance: source_account.balance,
+							destination_account_balance: destination_account.balance).save
+		end
+	end
+
+	def self.statements(account_id)
+		statements = Transaction.where(source_account_id: account_id).or(Transaction.where(destination_account_id: account_id)).order(:created_at)
+		
+		statements.map do |s| 
+			{
+				source_account_id: s.source_account_id,
+				destination_account_id: s.destination_account_id,
+				amount: s.amount,
+				balance: (account_id == s.source_account_id ? s.source_account_balance : s.destination_account_balance) 
+			} 
 		end
 	end
 end

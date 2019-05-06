@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_152632) do
+ActiveRecord::Schema.define(version: 2019_05_06_201323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_152632) do
     t.bigint "destination_account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "source_account_balance", precision: 6, scale: 2
+    t.decimal "destination_account_balance", precision: 6, scale: 2
     t.index ["destination_account_id"], name: "index_transactions_on_destination_account_id"
     t.index ["source_account_id"], name: "index_transactions_on_source_account_id"
   end

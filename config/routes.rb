@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
 		  post 'transactions/transfer'
 		  get 'transactions/balance'
+		  get 'transactions/statements'
 		  resource :sessions, only: [:create, :destroy]
 		end
 	end

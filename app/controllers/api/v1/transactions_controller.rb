@@ -27,4 +27,20 @@ class Api::V1::TransactionsController < ApplicationController
   	end
   end
 
+  def statements
+    begin
+      if params[:id].present? 
+        account = Account.find params[:id]
+        statements = Transaction.statements(account.id)
+        render json: {statements: statements}, status: :ok
+      else
+        render json: {error: I18n.t('errors.missing_params')}, status: :bad_request
+      end
+    rescue Exception => e
+      render json: {error: I18n.t('errors.source_account_not_found')}, status: :unprocessable_entity
+    end
+  end
+
+
+
 end
